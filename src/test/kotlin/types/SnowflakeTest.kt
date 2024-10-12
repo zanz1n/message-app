@@ -24,10 +24,13 @@ class SnowflakeTest {
     @Test
     fun `it's data must be extracted as provided`() {
         val rand = Random.nextUInt() and 0x3FFFFFu
-        val timestamp = Clock.System.now().toEpochMilliseconds()
-        val snowflake = Snowflake.encode(rand, timestamp)
+        val instant = Clock.System.now()
+        val snowflake = Snowflake.encode(rand, instant)
 
         assertEquals(snowflake.getRand(), rand)
-        assertEquals(snowflake.getTimestamp().toEpochMilliseconds(), timestamp)
+        assertEquals(
+            snowflake.getTimestamp().toEpochMilliseconds(),
+            instant.toEpochMilliseconds(),
+        )
     }
 }
