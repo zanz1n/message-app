@@ -2,7 +2,6 @@ package br.com.izan.ktortest1
 
 import br.com.izan.ktortest1.plugins.configureErrorHandler
 import br.com.izan.ktortest1.plugins.configureRouting
-import br.com.izan.ktortest1.plugins.configureSerialization
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -17,7 +16,6 @@ fun main() {
 }
 
 fun Application.module() {
-    configureSerialization()
     configureErrorHandler()
     configureRouting()
 }
