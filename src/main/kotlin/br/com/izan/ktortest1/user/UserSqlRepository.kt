@@ -19,7 +19,6 @@ import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransacti
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.jetbrains.exposed.sql.updateReturning
 import org.slf4j.LoggerFactory
-import java.sql.SQLIntegrityConstraintViolationException
 
 class UserSqlRepository(
     private val db: Database,
@@ -110,7 +109,7 @@ class UserSqlRepository(
             logger.info("Created user: $user")
             user
         } catch (e: Exception) {
-            if (e is SQLIntegrityConstraintViolationException) {
+            if (e.message?.contains("idx_user_email") == true) {
                 throw UserAlreadyExistsException(data.email)
             }
             throw e
