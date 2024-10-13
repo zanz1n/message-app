@@ -14,7 +14,7 @@ import kotlin.random.nextUInt
 
 @Serializable(with = Snowflake.SnowflakeSerializer::class)
 class Snowflake(val data: Long = randomData()) : Number(), Comparable<Snowflake> {
-    class SnowflakeSerializer : KSerializer<Snowflake> {
+    object SnowflakeSerializer : KSerializer<Snowflake> {
         override val descriptor = PrimitiveSerialDescriptor(
             "Snowflake",
             PrimitiveKind.STRING,
