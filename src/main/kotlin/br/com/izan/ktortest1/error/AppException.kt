@@ -13,4 +13,9 @@ open class AppException(
         message = message,
         detailed = e.message,
     )
+
+    class InvalidPathParameter(val name: String) : AppException(
+        "Path parameter `$name` is invalid",
+        HttpStatusCode.BadRequest,
+    )
 }
